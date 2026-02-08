@@ -1,0 +1,26 @@
+{% extends "main/base.html" %}
+
+{% block content %}
+    <div class="content-section">
+        <div class="media">
+            <div class="media-body">
+                <h2 class="account-heading">{{ user.username }}</h2>
+                <p class="text-secondary">Email: {{ user.email }}</p>
+                <p class="text-secondary">Телефон: {{ user.profile.phone_number }}</p>
+            </div>
+        </div>
+        <form method="POST">
+            {% csrf_token %}
+            <fieldset class="form-group">
+                <legend class="border-bottom mb-4">Информация профиля</legend>
+                <h4>Основная информация</h4>
+                {{ u_form.as_p }}
+                <h4>Дополнительная информация</h4>
+                {{ p_form.as_p }}
+            </fieldset>
+            <div class="form-group">
+                <button class="btn btn-outline-info" type="submit">Обновить</button>
+            </div>
+        </form>
+    </div>
+{% endblock content %}
